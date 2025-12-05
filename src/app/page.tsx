@@ -2,6 +2,7 @@
 
 import { Github, Mail, MessageSquare, Key, ArrowRight, Music, GitBranch, FileText, Home as HomeIcon, BookOpen, Mail as MailIcon, Archive, Sun, Moon } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   const [visitorCount, setVisitorCount] = useState(0);
@@ -95,10 +96,10 @@ export default function Home() {
           </div>
 
           {/* Blog CTA */}
-          <a href="/blog" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground hover:opacity-90 button-hover glow-on-hover">
+          <Link href="/blog" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground hover:opacity-90 button-hover glow-on-hover">
             read my blog
             <ArrowRight size={18} />
-          </a>
+          </Link>
         </div>
 
         {/* Info Cards */}
@@ -158,18 +159,18 @@ export default function Home() {
       <footer className="border-t border-border mt-20 theme-transition">
         <div className="max-w-6xl mx-auto px-6 py-6">
           <div className="flex items-center justify-center gap-8">
-            <a href="/" className="p-3 hover:bg-secondary rounded-lg button-hover">
+            <Link href="/" className="p-3 hover:bg-secondary rounded-lg button-hover">
               <HomeIcon size={20} />
-            </a>
-            <a href="/blog" className="p-3 hover:bg-secondary rounded-lg button-hover">
+            </Link>
+            <Link href="/blog" className="p-3 hover:bg-secondary rounded-lg button-hover">
               <BookOpen size={20} />
-            </a>
-            <a href="/guestbook" className="p-3 hover:bg-secondary rounded-lg button-hover">
+            </Link>
+            <Link href="/guestbook" className="p-3 hover:bg-secondary rounded-lg button-hover">
               <MailIcon size={20} />
-            </a>
-            <a href="/archives" className="p-3 hover:bg-secondary rounded-lg button-hover">
+            </Link>
+            <Link href="/archives" className="p-3 hover:bg-secondary rounded-lg button-hover">
               <Archive size={20} />
-            </a>
+            </Link>
           </div>
         </div>
       </footer>
