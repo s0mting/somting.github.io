@@ -1,0 +1,228 @@
+/* Pixelated font style */
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 82%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 82%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 82%;
+    --primary: 0 0% 82%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 17%;
+    --secondary-foreground: 0 0% 82%;
+    --muted: 0 0% 17%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 0 0% 17%;
+    --accent-foreground: 0 0% 82%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 82%;
+    --border: 0 0% 37%;
+    --input: 0 0% 37%;
+    --ring: 0 0% 82%;
+    --radius: 0.5rem;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 5%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 5%;
+    --primary: 0 0% 5%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 78%;
+    --input: 0 0% 78%;
+    --ring: 0 0% 5%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.pixelated-text {
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 4rem;
+  line-height: 1.2;
+  letter-spacing: 0.5rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@media (max-width: 768px) {
+  .pixelated-text {
+    font-size: 2.5rem;
+    letter-spacing: 0.3rem;
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button animations */
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes buttonSlide {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.button-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-hover::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.button-hover:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.button-hover:hover {
+  animation: buttonSlide 0.3s ease forwards;
+  box-shadow: 0 4px 12px rgba(210, 210, 210, 0.15);
+}
+
+.button-hover:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Card animations */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.card-hover:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.card-hover:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.card-hover:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(210, 210, 210, 0.1);
+}
+
+/* Theme toggle animation */
+.theme-toggle {
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.theme-toggle:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+
+.theme-toggle:active {
+  transform: rotate(180deg) scale(0.9);
+}
+
+/* Counter animation */
+@keyframes countUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter-animate {
+  animation: countUp 0.5s ease;
+  display: inline-block;
+}
+
+/* Smooth transitions for theme */
+.theme-transition {
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glow effect for interactive elements */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(210, 210, 210, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(210, 210, 210, 0.4);
+  }
+}
+
+.glow-on-hover:hover {
+  animation: glow 2s ease-in-out infinite;
+}
